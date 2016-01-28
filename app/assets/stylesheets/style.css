@@ -448,7 +448,7 @@ body { padding-top: 20px; }
 
 #myCarousel .list-group {
     position:absolute;
-    padding-left: 
+    padding-left; 
     top:0;
     right:0;
 }
