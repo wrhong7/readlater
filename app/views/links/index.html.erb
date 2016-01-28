@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+
+<div class="container">
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    
+      <!-- Wrapper for slides -->
+      <div class="carousel-inner">
+      
+        <div class="item active">
+          <img><%= image_tag @preview.images.first.src.to_s %></img>
+          <div class="carousel-caption">
+          <h3><%= link_to @preview.title, "#{@preview.url}", data: {confirm: "   You will move out of current page without saving your link. You can always come back. Please click \'Add to Databaase\' to save!"} %></h3>
+          <p> 	
+           	<%= @preview.description %>
+          </p>
+           	<%= bootstrap_form_for @link do |f| %>
+						<%= f.hidden_field :url, value:@preview.url %>
+						<%= f.hidden_field :title, value:@preview.title %>
+						<%= f.hidden_field :content, value:@preview.description %>
+						<%= f.hidden_field :image, value:@preview.favicon %>
+						<%= f.text_field :share, placeholder: "              Enter your friends' email addresses: for instance, abc@abc.com,bbc@bbc.com. You may leave blank!", hide_label: true %>
+					<h5>
+						<%= link_to 'Look up for friend\'s email', links_share_path, :onclick=>"window.open(this.href,'create_company', 'height=800, width=900');return false;" %>
+					</h5>
+					<h6><%= f.select :reminder, ['Reminder Off', 'Friday 3PM', 'Friday 8PM', 'Saturday 8AM', 'Saturday 3PM', 'Saturday 8PM', 'Sunday 8AM', 'Sunday 3PM', 'Sunday 8PM', ], hide_label: true %><%= f.submit "Add this page & Remind me later" %></h6>
+						<% end %>
+          </div>
+        </div><!-- End Item -->
+                
+      </div><!-- End Carousel Inner -->
+
+
+      <!-- Controls -->
+      <div class="carousel-controls">
+          <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+          </a>
+          <a class="right carousel-control" href="#myCarousel" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+          </a>
+      </div>
+
+    </div><!-- End Carousel -->
+</div>
+
+
+
+
+<% todaycount = 1 %>
+<% @todaynyesterday.reverse.each do |l| %>
+	<% if todaycount == 1 %>
+		<h5>Today and Yesterday</h5>
+	<% end %>
+	<div class="container">
+		<div class="row">
+			<div class="[col-md-12]">
+				<ul class="event-list">
+					<li>
+						<time datetime="2014-07-20">
+							<span class="day"><%= "#{l.created_at.to_date}"[5..6] %>/<%= "#{l.created_at.to_date}"[8..9] %>/<%= "#{l.created_at.to_date}"[0..3] %></span>
+							<span class="month"><%= "#{l.created_at.strftime('%a')}" %> <%= "#{l.created_at}"[11..15] %></span>
+							<span class="reminder"><%= "#{l.reminder}" %></span>
+							<p><%= link_to 'Edit', edit_link_path(l.id) %> <%= link_to 'Delete', link_path(l.id), method: :delete %></p>
+						</time>
+						<%= image_tag l.image %>
+						<div class="info">
+							<h5 class="title"><%= link_to(l.title, l.url, :onclick=>"window.open(this.href,'create_company', 'height=800, width=900');return false;") %></h5>
+							<p class="desc"><%= l.content %></p>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<% todaycount += 1 %>
+<% end %>
+
+<% thisweekcount = 1 %>
+<% @thisweek.reverse.each do |l| %>
+	<% if thisweekcount == 1 %>
+		<h5>This Week</h5>
+	<% end %>
+	<div class="container">
+		<div class="row">
+			<div class="[col-md-12]">
+				<ul class="event-list">
+					<li>
+						<time datetime="2014-07-20">
+							<span class="day"><%= "#{l.created_at.to_date}"[5..6] %>/<%= "#{l.created_at.to_date}"[8..9] %>/<%= "#{l.created_at.to_date}"[0..3] %></span>
+							<span class="month"><%= "#{l.created_at.strftime('%a')}" %> <%= "#{l.created_at}"[11..15] %></span>
+							<span class="reminder"><%= "#{l.reminder}" %></span>
+							<p><%= link_to 'Edit', edit_link_path(l.id) %> <%= link_to 'Delete', link_path(l.id), method: :delete %></p>
+						</time>
+						<%= image_tag l.image %>
+						<div class="info">
+							<h5 class="title"><%= link_to(l.title, l.url, :onclick=>"window.open(this.href,'create_company', 'height=800, width=900');return false;") %></h5>
+							<p class="desc"><%= l.content %></p>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<% thisweekcount += 1 %>
+<% end %>
+
+<% longtimeagocount = 1 %>
+<% @longtimeago.reverse.each do |l| %>
+	<% if longtimeagocount == 1 %>
+		<h5>A Long Time Ago</h5>
+	<% end %>
+	<div class="container">
+		<div class="row">
+			<div class="[col-md-12]">
+				<ul class="event-list">
+					<li>
+						<time datetime="2014-07-20">
+							<span class="day"><%= "#{l.created_at.to_date}"[5..6] %>/<%= "#{l.created_at.to_date}"[8..9] %>/<%= "#{l.created_at.to_date}"[0..3] %></span>
+							<span class="month"><%= "#{l.created_at.strftime('%a')}" %> <%= "#{l.created_at}"[11..15] %></span>
+							<span class="reminder"><%= "#{l.reminder}" %></span>
+							<p><%= link_to 'Edit', edit_link_path(l.id) %> <%= link_to 'Delete', link_path(l.id), method: :delete %></p>
+						</time>
+						<%= image_tag l.image %>
+						<div class="info">
+							<h5 class="title"><%= link_to(l.title, l.url, :onclick=>"window.open(this.href,'create_company', 'height=800, width=900');return false;") %></h5>
+							<p class="desc"><%= l.content %></p>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<% longtimeagocount += 1 %>
+<% end %>
+
+</html>

@@ -1,0 +1,18 @@
+<body>
+	<header>
+		<div class="searchbox">
+			<p>
+				<%= form_tag links_share_path, method: :get do %>
+					<%= email_field_tag :user, params[:user], :size => 25, :placeholder => "       account@email.com" %>
+					<%= submit_tag "Search" %>
+				<% end %>
+			</p>
+		</div>
+	</header>
+
+<h5>Please look up for the email. The name will be shown if the email is registered.</h5>
+
+
+<% @group_search.each do |f| %>
+	<h5></br>Name: <%= f.first_name %> <%= f.last_name %></br>Email: <%= f.email %></h5>
+<% end %>

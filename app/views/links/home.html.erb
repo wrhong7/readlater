@@ -1,0 +1,28 @@
+<body>
+	<video autoplay loop muted class="bgvideo" id="bgvideo">
+		<source src="https://s3.amazonaws.com/won.hong.bucket/Computer+-+1196.mp4">
+	</video>	
+</body>
+
+<div class="home_intro">
+<h4>Are you the one who is constantly expanding your horizon through reading?</h4>
+<i><u>SAVE</u></i> your favorite pages
+<h3 class="inline"><i><u>RECEIVE</u></i> reminder, <i><u>SEARCH</u></i> old news, and <i><u>SHARE</u></i>  with friends!<span="cursor">|</span> </h3>
+<h4> you will never miss an article again!</h4>
+</div>
+
+
+<h5>
+<% if user_signed_in? %>
+	<%= form_tag links_path, method: :get, :class => "input-large" do %>
+		<%= text_field_tag :intake, params[:intake], size: 60, required: true, placeholder: "                            i.e. http://www.nytimes.com and ENTER" %>
+		<% submit_tag "Add" %>
+	<% end %>
+<% else %>
+	<p>Please Login or Sign Up for your Weekend Library! </p>
+	<p>
+	<%= link_to 'Log In', new_user_session_path %> |
+	<%= link_to 'Sign Up', new_user_registration_path %>
+	</p>
+<% end %>
+</h5>

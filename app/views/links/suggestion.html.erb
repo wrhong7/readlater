@@ -1,0 +1,28 @@
+<% sharedcount = 1 %>
+<% @shared.reverse.each do |s| %>
+		<% if sharedcount == 1 %>
+			<h5>Recommended by your friends!</h5>
+		<% end %>
+		<div class="container">
+			<div class="row">
+				<div class="[col-md-12]">
+					<ul class="event-list">
+						<li>
+							<time datetime="2014-07-20">
+								<span class="day"><%= "#{s.created_at.to_date}"[5..6] %>/<%= "#{s.created_at.to_date}"[8..9] %>/<%= "#{s.created_at.to_date}"[0..3] %></span>
+								<span class="month"><%= "#{s.created_at.strftime('%a')}" %> <%= "#{s.created_at}"[11..15] %></span>
+								<span class="reminder"><%= "#{s.user.first_name}" %> <%= "#{s.user.last_name}"[0] %></span>
+								<p>shared this</p>
+							</time>
+							<%= image_tag s.image %>
+							<div class="info">
+								<h5 class="title"><%= link_to(s.title, s.url, :onclick=>"window.open(this.href,'create_company', 'height=800, width=1000');return false;") %></h5>
+								<p class="desc"><%= s.content %></p>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<% sharedcount += 1 %>
+<% end %>

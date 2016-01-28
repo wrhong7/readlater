@@ -1,0 +1,14 @@
+<%= bootstrap_form_for @link do |f| %>
+	<h4> Headline </h4>
+	<%= f.text_field :title, hide_label: true %>
+	<h4> Quick Note </h4>
+	<%= f.text_field :content, hide_label: true %>
+	<h4> Reminder </h4>
+	<%= f.select :reminder, ['No Reminder','Friday 3PM', 'Friday 8PM', 'Saturday 8AM', 'Saturday 3PM', 'Saturday 8PM', 'Sunday 8AM', 'Sunday 3PM', 'Sunday 8PM'], hide_label: true %>
+	<h4> Share with Friends </h4>
+	<%= f.text_field :share, hide_label: true %>
+	<h5>
+		<%= link_to 'Look up for friend\'s email', links_share_path, :onclick=>"window.open(this.href,'create_company', 'height=800, width=900');return false;" %>
+	</h5>
+	<h4><%= f.submit "Finish Editing" %></h4>
+<% end %>

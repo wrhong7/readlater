@@ -1,0 +1,102 @@
+<body>
+	<header>
+		<div class="searchbox">
+			<p>
+				<%= form_tag links_view_path, method: :get do %>
+					<%= text_field_tag :q, params[:q] %>
+					<%= submit_tag "Search" %>
+				<% end %>
+			</p>
+		</div>
+	</header>
+
+<% todaycount = 1 %>
+<% @todaynyesterday.reverse.each do |l| %>
+	<% if todaycount == 1 %>
+		<h5>Today and Yesterday</h5>
+	<% end %>
+	<div class="container">
+		<div class="row">
+			<div class="[col-md-12]">
+				<ul class="event-list">
+					<li>
+						<time datetime="2014-07-20">
+							<span class="day"><%= "#{l.created_at.to_date}"[5..6] %>/<%= "#{l.created_at.to_date}"[8..9] %>/<%= "#{l.created_at.to_date}"[0..3] %></span>
+							<span class="month"><%= "#{l.created_at.strftime('%a')}" %> <%= "#{l.created_at}"[11..15] %></span>
+							<span class="reminder"><%= "#{l.reminder}" %></span>
+							<p><%= link_to 'Edit', edit_link_path(l.id) %> <%= link_to 'Delete', link_path(l.id), method: :delete %></p>
+						</time>
+						<%= image_tag l.image %>
+						<div class="info">
+							<h5 class="title"><%= link_to(l.title, l.url, :onclick=>"window.open(this.href,'create_company', 'height=800, width=1000');return false;") %></h5>
+							<p class="desc"><%= l.content %></p>
+							<p class="shared">Shared with <%= "#{l.share}".count "," %> friends | <%= link_to 'Share More', edit_link_path(l.id) %> <p>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<% todaycount += 1 %>
+<% end %>
+
+<% thisweekcount = 1 %>
+<% @thisweek.reverse.each do |l| %>
+	<% if thisweekcount == 1 %>
+		<h5>This Week</h5>
+	<% end %>
+	<div class="container">
+		<div class="row">
+			<div class="[col-md-12]">
+				<ul class="event-list">
+					<li>
+						<time datetime="2014-07-20">
+							<span class="day"><%= "#{l.created_at.to_date}"[5..6] %>/<%= "#{l.created_at.to_date}"[8..9] %>/<%= "#{l.created_at.to_date}"[0..3] %></span>
+							<span class="month"><%= "#{l.created_at.strftime('%a')}" %> <%= "#{l.created_at}"[11..15] %></span>
+							<span class="reminder"><%= "#{l.reminder}" %></span>
+							<p><%= link_to 'Edit', edit_link_path(l.id) %> <%= link_to 'Delete', link_path(l.id), method: :delete %></p>
+						</time>
+						<%= image_tag l.image %>
+						<div class="info">
+							<h5 class="title"><%= link_to(l.title, l.url, :onclick=>"window.open(this.href,'create_company', 'height=800, width=900');return false;") %></h5>
+							<p class="desc"><%= l.content %></p>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<% thisweekcount += 1 %>
+<% end %>
+
+<% longtimeagocount = 1 %>
+<% @longtimeago.reverse.each do |l| %>
+	<% if longtimeagocount == 1 %>
+		<h5>A Long Time Ago</h5>
+	<% end %>
+	<div class="container">
+		<div class="row">
+			<div class="[col-md-12]">
+				<ul class="event-list">
+					<li>
+						<time datetime="2014-07-20">
+							<span class="day"><%= "#{l.created_at.to_date}"[5..6] %>/<%= "#{l.created_at.to_date}"[8..9] %>/<%= "#{l.created_at.to_date}"[0..3] %></span>
+							<span class="month"><%= "#{l.created_at.strftime('%a')}" %> <%= "#{l.created_at}"[11..15] %></span>
+							<span class="reminder"><%= "#{l.reminder}" %></span>
+							<p><%= link_to 'Edit', edit_link_path(l.id) %> <%= link_to 'Delete', link_path(l.id), method: :delete %></p>
+						</time>
+						<%= image_tag l.image %>
+						<div class="info">
+							<h5 class="title"><%= link_to(l.title, l.url, :onclick=>"window.open(this.href,'create_company', 'height=800, width=900');return false;") %></h5>
+							<p class="desc"><%= l.content %></p>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<% longtimeagocount += 1 %>
+<% end %>
+
+</body>
+

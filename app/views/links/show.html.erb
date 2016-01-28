@@ -1,0 +1,22 @@
+<div class="container">
+	<h5>Now we have the entry for you!</br></h5>
+	<div class="row">
+		<div class="[col-md-12]">
+			<ul class="event-list">
+				<li>
+					<time datetime="2014-07-20">
+						<span class="day"><%= "#{@link.created_at.to_date}"[5..6] %>/<%= "#{@link.created_at.to_date}"[8..9] %>/<%= "#{@link.created_at.to_date}"[0..3] %></span>
+						<span class="month"><%= "#{@link.created_at.strftime('%a')}" %> <%= "#{@link.created_at}"[11..15] %></span>
+						<span class="reminder"><%= "#{@link.reminder}" %></span>
+						<p><%= link_to 'Edit', edit_link_path(@link.id) %> <%= link_to 'Delete', link_path(@link.id), method: :delete %></p>
+					</time>
+					<%= image_tag @link.image %>
+					<div class="info">
+						<h5 class="title"><%= link_to(@link.title, @link.url, :onclick=>"window.open(this.href,'create_company', 'height=800, width=900');return false;") %></h5>
+						<p class="desc"><%= @link.content %></p>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>

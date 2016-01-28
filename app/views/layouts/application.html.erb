@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Readlater</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+	<header>
+		<nav>
+			<% if user_signed_in? %>
+				<p class="welcome"> <%= ["Hola! Welcome back", "Hey! Always good to see you", "Hey! Welcome back", "Hey! We've been waiting for you", "I was about to send you an Email!"][rand(0..4)] %> <%= current_user.first_name %>!</p>
+					<div class ="headermenu">
+						<div class="alignleft"> 
+							<%= link_to 'Add New Page', root_path %> | <%= link_to 'My Library', links_view_path %> | <%= link_to 'Friends\' Suggestions  ', links_suggestion_path %>
+						</div>
+						<div class="alignright">
+							<%= link_to 'Account Info', edit_user_registration_path %> | <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
+					  </div>
+					</div>
+			<% else %>
+				<p>
+				<%= link_to 'Sign Up', new_user_registration_path %> | 
+				<%= link_to 'Log In', new_user_session_path %> | 
+				<%= link_to 'Front Page', root_path %>
+				</p>
+			<% end %>
+		</nav>
+	</header>
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %> </p>
+
+<%= yield %>
+
+</body>
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" integrity="sha384-aUGj/X2zp5rLCbBxumKTCw2Z50WgIr1vs/PFN4praOTvYXWlVyh2UtNUU0KAUhAX" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+</html>
+
